@@ -10,9 +10,6 @@
     import TrafficLights from "../components/TrafficLights";
     export default {
         name: "Green",
-        mounted() {
-
-        },
         components: {TrafficLights}
     }
 </script>

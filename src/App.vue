@@ -29,7 +29,6 @@
       }
     },
     methods:{
-
       startValue(){
         switch (this.$route.path) {
           case '/red':
@@ -39,12 +38,12 @@
           case '/green':
             return 2
           case '/':
-            if(localStorage.session.split(',')[1] == false){
+            if(localStorage.getItem('session') == null){
               this.$router.push({name: this.$store.state.colorChange[0].color})
               return 0
             }
-            this.$router.push({name: this.$store.state.colorChange[localStorage.session.split(',')[1]].color})
-            return localStorage.session.split(',')[1]
+            this.$router.push({name: this.$store.state.colorChange[localStorage.getItem('session')?.split(',')[1]].color})
+            return localStorage.getItem('session')?.split(',')[1]
         }
         return 0
       }
@@ -58,7 +57,10 @@
 
       let colorArr = this.$store.state.colorChange
       let colorNumber = this.startValue()
-      let weekSec = localStorage.session.split(',')[0]
+      let weekSec = false
+      if(localStorage.getItem('session') != null) {
+        weekSec = localStorage.getItem('session').split(',')[0]
+      }
 
       do{
           await new Promise((resolve) => {
